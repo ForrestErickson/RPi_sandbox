@@ -75,7 +75,7 @@ else if(isset($_GET['camera_demo'])){
 <img src="still.jpg?<?php echo(microtime(TRUE)); ?>" width = "320" height = "240"> <br>
 Click on the image to open full resolution.</a><br>
 <br>
-<a href="video.h264" alt="link" target = "_blank">Link to video.</a>
+<a href="video.h264?<?php echo(microtime(TRUE));?>" alt="link" target = "_blank">Link to video.</a>
 
 <br><h5>Go to dead end: <a href="index.html">LINK </a></h5>
 
