@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<h1> Take Still Image on Raspberri Pi Camera </h1>
+<h4> Take Still Image on Raspberri Pi Camera </h4>
 <form method="get" action="./take_still.php">
 <b> LED Control:</b>
 <!---<input style = "color:red;border: 3pt ridge lightgrey; background-color:#000011" type="submit" value="LED ON" name="on">
@@ -14,6 +14,7 @@
 <input style = "color:green; border: 2pt ridge black" type="submit" value="LED OFF" name="off"><br><br>
 <b> Camera Control:</b>
 <input type="submit" value="MAKE A PHOTO" name="make_photo">
+<br><br>
 <input type="submit" value="MAKE A VIDEO" name="make_video">
 <input type="submit" value="CAMERA DEMO" name="camera_demo">
 </form>
@@ -72,11 +73,10 @@ else if(isset($_GET['camera_demo'])){
 ?>
 <hr>
 <a href ="still.jpg?<?php echo(microtime(TRUE));?>" target="_blank">
-<img src="still.jpg?<?php echo(microtime(TRUE)); ?>" width = "320" height = "240"> <br>
+<img src="still.jpg?<?php echo(microtime(TRUE)); ?>" width = "212" height = "160"> <br>
 Click on the image to open full resolution.</a><br>
 <br>
 <a href="video.h264?<?php echo(microtime(TRUE));?>" alt="link" target = "_blank">Link to video.</a>
-
 <br><h5>Go to dead end: <a href="index.html">LINK </a></h5>
 
 </body>
