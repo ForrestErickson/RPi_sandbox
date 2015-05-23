@@ -75,9 +75,11 @@ else if(isset($_GET['camera_demo'])){
 <a href ="still.jpg?<?php echo(microtime(TRUE));?>" target="_blank">
 <img src="still.jpg?<?php echo(microtime(TRUE)); ?>" width = "212" height = "160"> <br>
 Click on the image to open full resolution.</a><br>
-<br>
 <a href="video.h264?<?php echo(microtime(TRUE));?>" alt="link" target = "_blank">Link to video.</a>
 <br><h5>Go to dead end: <a href="index.html">LINK </a></h5>
+<?
+date_default_timezone_set("America/New_York");
+echo date('l jS \of F Y h:i:s A')," Eastern Time.";?><br>
 
 </body>
 </html>
