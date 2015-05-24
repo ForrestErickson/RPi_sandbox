@@ -26,11 +26,10 @@ for ($row = 0; $row<$ROWS; $row++)
 		{
 		$cellname = ($row+1)*10+$column+1;
 		echo '<td>';
-		echo '<input style = "color:red; border: 2pt ridge black" type="submit"';
-//		echo ' name= cellname'; echo ' value ="; echo $cellname; echo '>';
-//		echo ' value='; echo $cellname; echo ' name = cellname>';
-//		echo ' value='; echo $cellname; echo ' name = cellname>';
-		echo ' name = "cellname"'; echo ' value='; echo $cellname; echo '>';
+		echo '<input style = "color:red; border: 2pt ridge black" ';
+		echo 'type="submit"';
+		echo ' name = "toggle"';
+		echo ' value=', $cellname ,'>';
 		echo '</td>';
 		}
 	echo '</tr>';
@@ -50,14 +49,6 @@ echo '</form>';
 <input style = "color:green; border: 2pt ridge black" type="submit" value="LED OFF" name="off"><br><br>
 </form>
 
-<hr>
-<form method="get" action="./homecontrol.php">
-<b> Camera Control:</b>
-<input type="submit" value="MAKE A PHOTO" name="make_photo">
-<br><br>
-<input type="submit" value="MAKE A VIDEO" name="make_video">
-<input type="submit" value="CAMERA DEMO" name="camera_demo">
-</form>
 
 <?php
 //echo shell_exec("python -V 2>&1");	//Used to test python exicution.
@@ -79,36 +70,8 @@ else if(isset($_GET['off'])){
 	echo "LED is off";
 }
 
-else if(isset($_GET['make_photo'])){
-//	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg -n");
-	$camera = shell_exec("sudo raspistill -v -t 100 -w 1280 -h 720 -o still.jpg");
-	echo "Photo has been made.<br>";
-
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Blink_LED_Pin7.py 2>&1");
-	echo "LED has blinked.";
-}
-
-else if(isset($_GET['make_video'])){
-//	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg -n");
-	$camera = shell_exec("sudo raspivid -t 5000 -o video.h264");
-	echo "Photo has been made.<br>";
-
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Blink_LED_Pin7.py 2>&1");
-	echo "LED has blinked.";
-}
 
 
-else if(isset($_GET['camera_demo'])){
-//	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg -n");
-	$camera = shell_exec("sudo raspistill -t 5000 -d 100 -w 640 -h 480");
-	echo "Demo of Camera Features.<br>";
-
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Blink_LED_Pin7.py 2>&1");
-	echo "LED has blinked.";
-}
 
 ?>
 <hr>
