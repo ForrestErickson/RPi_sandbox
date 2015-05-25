@@ -12,11 +12,11 @@
 ---!>
 <input style = "color:red; border: 2pt ridge black" type="submit" value="LED ON" name="on">
 <input style = "color:green; border: 2pt ridge black" type="submit" value="LED OFF" name="off"><br><br>
-<b> Camera Control:</b>
+<b> Camera Control:</b><br>
 <input type="submit" value="MAKE A PHOTO" name="make_photo">
+<input type="submit" value="MAKE NIGHT PHOTO" name="make_nightphoto">
 <br><br>
 <input type="submit" value="MAKE A VIDEO" name="make_video">
-<input type="submit" value="CAMERA DEMO" name="camera_demo">
 </form>
 
 <?php
@@ -24,51 +24,34 @@
 //echo "PHP text here.<br>";
 
 if(isset($_GET['on'])){
-//	$gpio_on = shell_exec("/usr/local/bin/gpio -g write 17 1");
-//	$gpio_off = shell_exec("sudo python /home/pi/Documents/Python/LED_off_Pin7.py");
 	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/LED_on_Pin7.py 2>&1");
 	echo $gpio_on;
 	echo "LED is on";
 }
 
-
-
 else if(isset($_GET['off'])){
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
 	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/LED_off_Pin7.py 2>&1");
 	echo "LED is off";
 }
 
 else if(isset($_GET['make_photo'])){
-//	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg -n");
-	$camera = shell_exec("sudo raspistill -v -t 100 -w 1280 -h 720 -o still.jpg");
+//	$camera = shell_exec("sudo raspistill -v -t 100 -w 1280 -h 720 -o still.jpg");
+	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg");
 	echo "Photo has been made.<br>";
-
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Blink_LED_Pin7.py 2>&1");
-	echo "LED has blinked.";
 }
+
+else if(isset($_GET['make_nightphoto'])){
+	$camera = shell_exec("sudo raspistill -v -ISO 800 -o still.jpg");
+	echo "Night Photo has been made.<br>";
+}
+
 
 else if(isset($_GET['make_video'])){
-//	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg -n");
 	$camera = shell_exec("sudo raspivid -t 5000 -o video.h264");
-	echo "Photo has been made.<br>";
-
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Blink_LED_Pin7.py 2>&1");
-	echo "LED has blinked.";
+	echo "Video has been made.<br>";
 }
 
 
-else if(isset($_GET['camera_demo'])){
-//	$camera = shell_exec("sudo raspistill -v -t 100 -o still.jpg -n");
-	$camera = shell_exec("sudo raspistill -t 5000 -d 100 -w 640 -h 480");
-	echo "Demo of Camera Features.<br>";
-
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Blink_LED_Pin7.py 2>&1");
-	echo "LED has blinked.";
-}
 
 ?>
 <hr>
@@ -76,7 +59,8 @@ else if(isset($_GET['camera_demo'])){
 <img src="still.jpg?<?php echo(microtime(TRUE)); ?>" width = "212" height = "160"> <br>
 Click on the image to open full resolution.</a><br>
 <a href="video.h264?<?php echo(microtime(TRUE));?>" alt="link" target = "_blank">Link to video.</a>
-<br><h5>Go to dead end: <a href="index.html">LINK </a></h5>
+<h5>Go to Home Control: <a href="homecontrol.php">LINK </a><br>
+Go to dead end: <a href="index.html">LINK </a></h5>
 <?
 date_default_timezone_set("America/New_York");
 echo date('l jS \of F Y h:i:s A')," Eastern Time.";?><br>
