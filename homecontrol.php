@@ -85,6 +85,8 @@ echo '</form>';
 ?>
 
 <hr>
+<h5>Go to Take Still Image: <a href="take_still.php">LINK </a><br>
+Go to dead end: <a href="index.html">LINK </a></h5>
 <?
 date_default_timezone_set("America/New_York");
 echo date('l jS \of F Y h:i:s A')," Eastern Time.";
