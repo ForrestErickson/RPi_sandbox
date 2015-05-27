@@ -14,8 +14,9 @@
 --!>
 <input style = "color:red; border: 2pt ridge black" type="submit" value="LED ON" name="on">
 <input style = "color:green; border: 2pt ridge black" type="submit" value="LED OFF" name="off"><br><br>
-<input style = "color:blue; border: 2pt ridge black" type="submit" value="Gaurage West" name="pulse12">
-<input style = "color:yellow; border: 2pt ridge black" type="submit" value="Gaurage East" name="pulse18"><br><br>
+<input style = "color:blue; border: 2pt ridge black" type="submit" value="Garage West" name="pulse18">
+<input style = "color:yellow; border: 2pt ridge black" type="submit" value="Garage East" name="pulse12"><br><br>
+<input style = "color:cyan; border: 2pt ridge black" type="submit" value="Input 11" name="input11"><br><br>
 </form>
 
 <?php
@@ -23,9 +24,13 @@
 //echo shell_exec("python -V 2>&1");	//Used to test python exicution.
 //echo "PHP text here.<br>";
 
+if(isset($_GET['input11'])){
+	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py 11 2>&1");
+	echo "Pin 11 is ";
+	echo ($gpio_on) ;
+}
+
 if(isset($_GET['on'])){
-//	$gpio_on = shell_exec("/usr/local/bin/gpio -g write 17 1");
-//	$gpio_off = shell_exec("sudo python /home/pi/Documents/Python/LED_off_Pin7.py");
 	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/LED_on_Pin7.py 2>&1");
 	echo $gpio_on;
 	echo "LED is on";
@@ -34,7 +39,6 @@ if(isset($_GET['on'])){
 
 
 else if(isset($_GET['off'])){
-//	$gpio_off = shell_exec("/usr/local/bin/gpio -g write 17 0");
 	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/LED_off_Pin7.py 2>&1");
 	echo "LED is off";
 }
