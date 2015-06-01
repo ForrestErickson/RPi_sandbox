@@ -20,13 +20,13 @@
 
 <?
 if(isset($_GET['input11'])){
-	$gpio = shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py 11 2>&1");
-	echo "gpio is =", $gpio, "<br>";
-	if ($gpio == "LOW") {
-		echo "East garage door is Safe";
+	$gpio = trim(shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py 11 2>&1"));
+//	echo "gpio is =", $gpio, ".<br>";
+	if (strcasecmp ($gpio, "LOW") ==0 ) {
+		echo "East garage door is SAFE.";
 	}
 	else	{
-	echo "East garage door is NOT safe" ;
+	echo "East garage door is NOT safe." ;
 	}
 }
 ?>
