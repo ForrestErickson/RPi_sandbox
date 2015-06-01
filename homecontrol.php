@@ -22,10 +22,15 @@
 <input style = "color:magenta; border: 2pt ridge black" type="submit" value="Garage East" name="pulse12"><br>
 
 <?
+//RPi Pin assignments 
+$GreenLED = 7;
+$SaftySensor = 11;
+$DoorButtonEast = 12;
+
 if(isset($_POST['input11'])){
-	$gpio = trim(shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py 11 2>&1"));
+	$nSafe = trim(shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py $SaftySensor 2>&1"));
 //	echo "gpio is =", $gpio, ".<br>";
-	if (strcasecmp ($gpio, "LOW") ==0 ) {
+	if (strcasecmp ($nSafe, "LOW") ==0 ) {
 		echo "East garage door is SAFE.";
 	}
 	else	{
@@ -44,9 +49,9 @@ if(isset($_POST['input11'])){
 
 //Act on the form buttons.
 if(isset($_POST['input11'])){
-	$gpio_on = shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py 11 2>&1");
+	$nSafe = shell_exec("sudo python /home/pi/Documents/Python/Check_Pin.py 11 2>&1");
 	echo "Pin 11 is ";
-	echo ($gpio_on) ;
+	echo ($nSafe) ;
 }
 
 if(isset($_POST['on'])){
